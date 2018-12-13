@@ -1,3 +1,3 @@
 class Note < ApplicationRecord
-  belongs_to :book
+  belongs_to :book, optional: true # optional: true solo para correr seeds
 end
