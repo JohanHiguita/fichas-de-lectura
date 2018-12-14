@@ -18,7 +18,7 @@ Note.destroy_all
  
 
 
-num_books=200
+num_books=100
 num_authors=50
 num_topics=10
 num_notes=300
