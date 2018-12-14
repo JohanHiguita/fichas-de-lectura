@@ -12,9 +12,14 @@
 		<tbody>
 			<% @books.each do |book| %>
 			<tr>
+				<%#= byebug %>
 				<td><%= book.title %></td>
-				<td><%= book.autor.name1 %></td>
-				<td><%= book.topics %></td>
+				<td><%= book.autor.name1 %>
+					<%= book.autor.name2 %>
+					<%= book.autor.lastname1 %>
+					<%= book.autor.lastname2 %>
+				</td>
+				<td><%= ((book.topics).map{ |x| x.name }).join(", ") %></td>
 				<td class="crud-td">
 					<i class="fa fa-eye watch" title="Ver ficha completa"></i>
 					<i class="fa fa-edit edit" title= "Editar"></i>

@@ -42,7 +42,7 @@ prng = Random.new
 num_books.times do |i|
 	Book.create!(
 		id: i+1, 
-		title: Faker::Book.title, 
+		title: Faker::Book.unique.title, 
 		editorial: Faker::Book.publisher,
 		city: Faker::Nation.capital_city,
 		autor_id: prng.rand(1..num_authors),
