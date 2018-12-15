@@ -15,8 +15,10 @@ class BooksController < ApplicationController
   end
 
   def new
+
     @book=Book.new
     @topics=Topic.all
+
   end
 
   def create
@@ -75,10 +77,13 @@ class BooksController < ApplicationController
 
   private
 
+
   def book_params
   params.require(:book).permit(:user_id, :title, :city,:editorial, :autor_id, :topic_ids) #solo permite estos datos
   
 end
 end
+
+
 
 
