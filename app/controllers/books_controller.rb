@@ -20,15 +20,21 @@ class BooksController < ApplicationController
   end
 
   def create
-   
     @book = Book.new(book_params)
     @book.user = current_user
+    if params[:topic_ids]
+      params[:topic_ids].each do |topic_id|
+        topic = Topic.find(topic_id)
+        @book.topics << topic
+      end
+    end
     if @book.save
 
       flash[:notice]= "Libro creado exitosamente!"
       redirect_to books_path
 
     else
+      @topics=Topic.all
       flash[:alert] = "Falló la cración del libro"
       render :new
     end
@@ -36,30 +42,41 @@ class BooksController < ApplicationController
 
   def edit
     @book=Book.find(params[:id])
+    @topics=Topic.all
+
   end
 
   def update
     @book=Book.find(params[:id])
+    if params[:topic_ids]
+      params[:topic_ids].each do |topic_id|
+        topic = Topic.find(topic_id)
+        @book.topics << topic
+      end
+    end
     if @book.update(book_params)
 
-      flash[:notice]= "Libro creado exitosamente!"
+      flash[:notice]= "Libro editado exitosamente!"
       redirect_to books_path
 
     else
-      flash[:alert] = "Falló la cración del libro"
+      flash[:alert] = "Falló la modificación del libro"
       render :new
     end
 
   end
 
-  def delete
+  def destroy
+    book = Book.find(params[:id])
+    book.destroy
+    redirect_to books_path
   end
 
 
   private
 
   def book_params
-  params.require(:book).permit(:user_id, :title, :city,:editorial, :autor_id) #solo permite estos datos
+  params.require(:book).permit(:user_id, :title, :city,:editorial, :autor_id, :topic_ids) #solo permite estos datos
   
 end
 end

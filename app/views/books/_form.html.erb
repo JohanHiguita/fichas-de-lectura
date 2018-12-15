@@ -1,6 +1,6 @@
-<% index_topics = @book.topics.map{|x| x.id} %> <!-- obtener array con ids de las categorias (para editar) -->
-<% unless @book.new_record? 
-	@book.categories.delete_all #Reinicia asocioaciones (solo en editar)
+<% index_topics = @book.topics.map{|x| x.id} %>
+ <% unless @book.new_record? 
+		@book.topics.delete_all #Reinicia asocioaciones (solo en editar)
 	end %>
 	<br><br>
 	<div class="container">
@@ -48,7 +48,7 @@
 			<label for=""><b>Temas</b></label><br>
 			<% for topic in @topics %> 
 			<% if @book.new_record?%>
-			<%= check_box_tag "topics_ids[#{topic.id}]", topic.id %>
+			<%= check_box_tag "topic_ids[#{topic.id}]", topic.id %>
 			<% else %>
 			<!-- checked checkbox en el form de editar: -->
 			<% if index_topics.include?(topic.id) %>
@@ -61,6 +61,7 @@
 			<%= label_tag("topic_ids[#{topic.id}]", topic.name) %> <br>
 
 			<% end %>
+			<a href="#">Agregar Tema</a>
 		</div>
 
 
