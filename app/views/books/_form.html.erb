@@ -1,0 +1,85 @@
+<% index_topics = @book.topics.map{|x| x.id} %>
+ <% unless @book.new_record? 
+		@book.topics.delete_all #Reinicia asocioaciones (solo en editar)
+	end %>
+	<br><br>
+	<div class="container">
+		<% if @book.new_record? %>
+		<h2>Crear nuevo libro</h2>
+		<% else %>
+		<h2>Editar libro</h2>
+		<% end %>
+
+		<%= form_for @book do |f| %>
+		<% if @book.errors.any? %>
+		<div class="alert alert-danger alert-block alert-fized">
+			<ul>
+				<% @book.errors.full_messages.each do |msg| %>
+				<li><%= msg %></li>
+				<% end %>
+			</ul>
+
+		</div>
+		<% end %>
+
+
+		<div class="form-group">
+			<label for=""><b>Título</b></label>
+			<%= f.text_field :title, class: "form-control"  %>
+		</div>
+
+		<div class="form-group">
+			<label for=""><b>Editorial</b></label>
+			<%= f.text_field :editorial, class: "form-control"  %>
+		</div>
+
+		<div class="form-group">
+			<label for=""><b>Ciudad:</b></label>
+			<%= f.text_field :city, class: "form-control"  %>
+		</div>
+
+		<div class="form-group">
+			<label for=""><b>Autor:</b></label>
+			<%= collection_select(:book, :autor_id, Autor.all.order(lastname1: :asc), :id, :name_with_initial, {prompt: true}, {:class=>'custom-select'})%>
+			<a href="#">Agregar Autor</a>
+		</div>
+
+		<div class="form-group">
+			<label for=""><b>Temas</b></label><br>
+			<% for topic in @topics %> 
+			<% if @book.new_record?%>
+			<%= check_box_tag "topic_ids[#{topic.id}]", topic.id %>
+			<% else %>
+			<!-- checked checkbox en el form de editar: -->
+			<% if index_topics.include?(topic.id) %>
+			<%= check_box_tag "topic_ids[#{topic.id}]", topic.id, true %> 
+			<% else %>
+			<%= check_box_tag "topic_ids[#{topic.id}]", topic.id %>
+			<% end %>
+
+			<% end %>
+			<%= label_tag("topic_ids[#{topic.id}]", topic.name) %> <br>
+
+			<% end %>
+			<a href="#">Agregar Tema</a>
+		</div>
+
+
+
+		<% if @book.new_record? %>
+		<%= f.submit "Crear Libro", class: "btn btn-primary"%>
+		<% else %>
+		<%= f.submit "Editar", class: "btn btn-primary"%>
+		<% end %>
+
+
+
+		<%= link_to "Volver", books_path, class: "btn btn-secondary"%>
+
+		<!-- <label>Temas</label> -->
+		<%#= f.collection_select(:topic_ids, @topics, :id, :name, {prompt:"Choose a Category"}, {class: "form-control"})  %>
+
+
+
+		<% end %>
+	</div>
