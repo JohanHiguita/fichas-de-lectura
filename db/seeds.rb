@@ -14,10 +14,6 @@ Autor.destroy_all
 Cite.destroy_all
 Note.destroy_all 
 
- 
- 
-
-
 num_books=100
 num_authors=50
 num_topics=10
