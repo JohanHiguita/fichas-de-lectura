@@ -14,18 +14,20 @@ Autor.destroy_all
 Cite.destroy_all
 Note.destroy_all 
 
-# num_books=100
+
+
+num_books=100
  num_authors=50
-# num_topics=10
-# num_notes=300
-# num_cites=150
+num_topics=10
+num_notes=300
+num_cites=150
 
-# #Topics:
-# num_topics.times do |i|
-# 	Topic.create(id: i+1, name: Faker::Book.unique.genre)
-# end
+#Topics:
+num_topics.times do |i|
+	Topic.create(id: i+1, name: Faker::Book.unique.genre)
+end
 
-# #Autors:
+#Autors:
 
 num_authors.times do |i|
 	Autor.create!(id: i+1, name1: Faker::Name.first_name, name2: Faker::Name.middle_name,
@@ -33,35 +35,35 @@ num_authors.times do |i|
 end
 
 
-# #Books:
-# prng = Random.new
-# num_books.times do |i|
-# 	Book.create!(
-# 		id: i+1, 
-# 		title: Faker::Book.unique.title, 
-# 		editorial: Faker::Book.publisher,
-# 		city: Faker::Nation.capital_city,
-# 		autor_id: prng.rand(1..num_authors),
-# 		topic_ids: [
-# 			prng.rand(1..num_topics),
-# 			prng.rand(1..num_topics),
-# 			prng.rand(1..num_topics)
-# 		],
-# 		user_id: 1 
-# 		);
-# end
+#Books:
+prng = Random.new
+num_books.times do |i|
+	Book.create!(
+		id: i+1, 
+		title: Faker::Book.unique.title, 
+		editorial: Faker::Book.publisher,
+		city: Faker::Nation.capital_city,
+		autor_id: prng.rand(1..num_authors),
+		topic_ids: [
+			prng.rand(1..num_topics),
+			prng.rand(1..num_topics),
+			prng.rand(1..num_topics)
+		],
+		user_id: 1 
+		);
+end
 
-# #Notes:
+#Notes:
 
-# num_notes.times do |i|
-# 	prng = Random.new
-# 	Note.create!(id: i+1, content: Faker::Lorem.sentence, book_id: prng.rand(1..num_books) )
-# end
+num_notes.times do |i|
+	prng = Random.new
+	Note.create!(id: i+1, content: Faker::Lorem.sentence, book_id: prng.rand(1..num_books) )
+end
 
-# #Cites:
+#Cites:
 
-# num_cites.times do |i|
-# 	prng = Random.new
-# 	Cite.create!(id: i+1, content: Faker::Simpsons.quote, book_id: prng.rand(1..num_books) )
-# end
+num_cites.times do |i|
+	prng = Random.new
+	Cite.create!(id: i+1, content: Faker::Simpsons.quote, book_id: prng.rand(1..num_books) )
+end
 

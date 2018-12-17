@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 2018_12_12_180248) do
   end
 
   create_table "books", force: :cascade do |t|
+
     t.string "title"
     t.string "editorial"
     t.string "city"
