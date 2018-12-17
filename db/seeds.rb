@@ -15,7 +15,7 @@ Cite.destroy_all
 Note.destroy_all 
 
 # num_books=100
-# num_authors=50
+ num_authors=50
 # num_topics=10
 # num_notes=300
 # num_cites=150
@@ -27,10 +27,10 @@ Note.destroy_all
 
 # #Autors:
 
-# num_authors.times do |i|
-# 	Autor.create!(id: i+1, name1: Faker::Name.first_name, name2: Faker::Name.middle_name,
-# 		lastname1: Faker::Name.last_name, lastname2: Faker::Name.last_name );
-# end
+num_authors.times do |i|
+	Autor.create!(id: i+1, name1: Faker::Name.first_name, name2: Faker::Name.middle_name,
+		lastname1: Faker::Name.last_name, lastname2: Faker::Name.last_name );
+end
 
 
 # #Books:
