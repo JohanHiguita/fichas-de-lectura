@@ -17,3 +17,35 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+
+$(document).ready(function () {
+	$('#example').DataTable();
+	translateTable();
+
+	
+
+
+
+
+	
+
+
+
+//Funciones:
+	function translateTable() {
+  		//Cantidad de filas
+  		en_text= $("#example_length label").html();
+		//Palabras a cambiar:
+		es_text= en_text.replace("Show", "Mostrar");
+		es_text= es_text.replace("entries", " filas");
+		$("#example_length label").html(es_text);
+
+		//Formulario
+		en_text = $("#example_filter label").html();
+		//Palabras a cambiar:
+		es_text = en_text.replace("Search", "Buscar");
+		$("#example_filter label").html(es_text);
+	}
+
+});
+
