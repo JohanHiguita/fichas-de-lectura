@@ -1,0 +1,55 @@
+<div class="modal fade" id="autor-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<% @autor=Autor.new %>
+			<%= form_for @autor, remote: true do |f| %>
+			<div class="modal-body">
+				
+				<% if @autor.errors.any? %>
+				<div class="alert alert-danger alert-block alert-fized">
+					<ul>
+						<% @autor.errors.full_messages.each do |msg| %>
+						<li><%= msg %></li>
+						<% end %>
+					</ul>
+
+				</div>
+				<% end %>
+				<div class="form-row">
+
+					<div class="col">
+						<%= f.text_field :name1, class: "form-control", placeholder: "Primer nombre"  %>
+					</div>
+					<div class="col">
+						<%= f.text_field :name2, class: "form-control", placeholder: "Segundo nombre"  %>
+					</div>
+				</div><br/>
+				<div class="form-row">
+					<div class="col">
+						<%= f.text_field :lastname1, class: "form-control", placeholder: "Primer apellido"  %>
+					</div>
+					<div class="col">
+						<%= f.text_field :lastname2, class: "form-control", placeholder: "Segundo apellido"  %>
+					</div>
+				</div>
+				
+				
+				
+
+				
+			</div>
+
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+				<%= f.submit "Agregar", class: "btn btn-success"%>
+			</div>
+			<% end %>
+		</div>
+	</div>
+</div>

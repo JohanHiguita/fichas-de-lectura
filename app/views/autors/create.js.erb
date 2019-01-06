@@ -1,0 +1,5 @@
+<% if @autor.errors.empty? %>	
+		$("#autor-modal").modal("hide");
+<% else %>
+		alert(" <%= @autor.errors.full_messages[0] %>")
+<% end %>

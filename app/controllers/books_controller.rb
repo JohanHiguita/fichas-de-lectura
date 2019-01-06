@@ -18,6 +18,7 @@ class BooksController < ApplicationController
 
     @book=Book.new
     @topics=Topic.all
+    #@autor=Autor.new
 
   end
 
@@ -81,7 +82,7 @@ class BooksController < ApplicationController
   def book_params
   params.require(:book).permit(:user_id, :title, :city,:editorial, :autor_id, :topic_ids) #solo permite estos datos
   
-end
+  end
 end
 
 
