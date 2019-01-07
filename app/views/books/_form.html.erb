@@ -38,12 +38,10 @@
 			<%= f.text_field :city, class: "form-control", placeholder: "Ingrese ciudad"  %>
 		</div>
 
-		<div class="form-group">
+		<div class="form-group autors">
 			<label for=""><b>Autor*:</b></label>
-			<%= collection_select(:book, :autor_id, Autor.all.order(lastname1: :asc), :id, :name_with_initial, {prompt: true}, {:class=>'custom-select'})%>
-			<a href="#">Agregar Autor</a>
-			<%= link_to "Crear Autor", new_autor_path, remote: true, class: "btn btn-sm btn-outline-secondary"  %>
-			<%#= render "form-autor" %>
+			<%= render "autor_collections" %>
+			<%= link_to "Ingresar nuevo Autor", new_autor_path, remote: true, class: "btn btn-sm btn-outline-success btn-crear-autor"  %>
 		</div>
 
 		<div class="form-group">

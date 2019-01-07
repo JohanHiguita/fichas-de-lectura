@@ -1,5 +1,11 @@
-<% if @autor.errors.empty? %>	
-		$("#autor-modal").modal("hide");
+<% if @autor.errors.empty? %>
+	$("#autor-modal").modal("hide");
+	$(".select-autors").replaceWith('<%= j render "books/autor_collections" %>');
+	var selector_code = "[value ="+<%= @autor.id %>+"]";
+	$(selector_code).css("background-color", "#b3ffb3");
+	$(".select-autors").val(<%= @autor.id %>);
+
 <% else %>
-		alert(" <%= @autor.errors.full_messages[0] %>")
+	alert(" <%= @autor.errors.full_messages[0] %>");
 <% end %>
+	
