@@ -24,7 +24,7 @@
 				<div class="form-row">
 
 					<div class="col">
-						<%= f.text_field :name1, class: "form-control", placeholder: "Primer nombre"  %>
+						<%= f.text_field :name1, class: "form-control", placeholder: "Primer nombre", :required => true %>
 					</div>
 					<div class="col">
 						<%= f.text_field :name2, class: "form-control", placeholder: "Segundo nombre"  %>
@@ -32,13 +32,13 @@
 				</div><br/>
 				<div class="form-row">
 					<div class="col">
-						<%= f.text_field :lastname1, class: "form-control", placeholder: "Primer apellido"  %>
+						<%= f.text_field :lastname1, class: "form-control", placeholder: "Primer apellido", :required => true  %>
 					</div>
 					<div class="col">
 						<%= f.text_field :lastname2, class: "form-control", placeholder: "Segundo apellido"  %>
 					</div>
 				</div>
-	
+
 			</div>
 
 			<div class="modal-footer">
