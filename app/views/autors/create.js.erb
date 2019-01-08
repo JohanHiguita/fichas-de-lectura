@@ -1,12 +1,30 @@
 <% if @autor.errors.empty? %>
-	$("#autor-modal").modal("hide");
-	$(".select-autors").replaceWith('<%= j render "books/autor_collections" %>');
-	var selector_code = "[value ="+<%= @autor.id %>+"]";
-	$(selector_code).css("background-color", "#b3ffb3");
+$("#autor-modal").modal("hide");
+$(".select-autors").val(<%= @autor.id %>);
+$(".select-autors").replaceWith('<%= j render "books/autor_collections" %>');
 
-	$(".select-autors").val(<%= @autor.id %>);
+setInput(<%= @autor.id %>); //set the new autor by default
+
+$( "#combobox" ).combobox();
+addClassesInput();
 
 <% else %>
-	alert(" <%= @autor.errors.full_messages[0] %>");
+alert(" <%= @autor.errors.full_messages[0] %>");
 <% end %>
-	
+
+/*------------------------Functions:---------------------*/
+
+//function to set the selected value as default
+function setInput(defValue) {
+	$('#combobox option').each(function () {
+		if (($(this).attr('value')) == defValue) {
+			$(this).attr('selected', 'selected');
+		}
+	});
+}
+
+function addClassesInput(){ //hay una copia en application.js
+		$( ".custom-combobox a" ).addClass("input-group-addon dropdown-toggle btn btn-outline-secondary dropdown-toggle dropdown-toggle-split");
+		$(".custom-combobox input").addClass("form-control");
+		$(".custom-combobox").addClass("input-group");	
+	}

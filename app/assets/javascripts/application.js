@@ -38,9 +38,17 @@
 // 	}
 // });
 
+
 $(document).ready(function () {
 	$('#example').DataTable();
-	//translateTable();
+	$( "#combobox" ).combobox();
+	$( "#toggle" ).on( "click", function() {
+		$( "#combobox" ).toggle();
+	});
+	addClassesInput();
+
+	
+
 //Funciones:
 function translateTable() {
   		//Cantidad de filas
@@ -57,5 +65,21 @@ function translateTable() {
 		$("#example_filter label").html(es_text);
 	}
 
+
+	function setInput(defValue) {
+		$('#combobox option').each(function () {
+			if (($(this).attr('value')) == defValue) {
+				$(this).attr('selected', 'selected');
+			}
+		});
+	}
+
+	function addClassesInput(){ //hay una copia en views/autors/create.js.erb
+		$( ".custom-combobox a" ).addClass("input-group-addon dropdown-toggle btn btn-outline-secondary dropdown-toggle dropdown-toggle-split");
+		$(".custom-combobox input").addClass("form-control");
+		$(".custom-combobox").addClass("input-group");	
+	}
+
 });
+
 
