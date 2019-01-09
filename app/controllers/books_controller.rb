@@ -8,7 +8,6 @@ class BooksController < ApplicationController
 
   def show
     @book=Book.find(params[:id])
-    @notes=@book.notes
     @cites=@book.cites
     @topics=@book.topics
     @autor = "#{@book.autor.name1} #{@book.autor.name2} #{@book.autor.lastname1} #{@book.autor.lastname2}"

@@ -4,7 +4,7 @@ class Book < ApplicationRecord
 	belongs_to :user
 	belongs_to :autor
 	has_many :cites, dependent: :destroy
-	has_many :notes, dependent: :destroy
+	
 
 	#Validation:
 	validates :title, presence: true
