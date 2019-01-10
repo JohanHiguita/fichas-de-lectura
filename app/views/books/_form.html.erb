@@ -41,14 +41,14 @@
 		<div class="form-group autors">
 			<label><b>Autor*:</b></label>
 			<%= render "autor_collections" %>
-			<%= link_to "Ingresar nuevo Autor", new_autor_path, remote: true, class: "btn btn-sm btn-outline-success btn-crear-autor"  %>
+			<%= link_to "Crear Autor", new_autor_path, remote: true, class: "btn btn-sm btn-outline-success btn-crear-autor"  %>
 		</div>
 
-		<div class="form-group">
+		<div class="form-group topic_checkboxes">
 			<label for=""><b>Temas</b></label><br>
 			<% for topic in @topics %> 
 			<% if @book.new_record?%>
-			<%= check_box_tag "topic_ids[#{topic.id}]", topic.id %>
+			<%= render "topic_checkbox", topic: topic %>
 			<% else %>
 			<!-- checked checkbox en el form de editar: -->
 			<% if index_topics.include?(topic.id) %>
@@ -56,12 +56,18 @@
 			<% else %>
 			<%= check_box_tag "topic_ids[#{topic.id}]", topic.id %>
 			<% end %>
-
-			<% end %>
 			<%= label_tag("topic_ids[#{topic.id}]", topic.name) %> <br>
+			<% end %>
+			
 
 			<% end %>
-			<a href="#">Agregar Tema</a>
+			<%= link_to "Crear Tema", new_topic_path, remote: true, class: "btn btn-sm btn-outline-success btn-crear-topic"  %>
+		</div>
+
+		<div class="form-group">
+			<label><b>Notas personales:</b></label>
+			<%= text_area(:book, :notes, cols: 20, rows: 10, class: "form-control", placeholder: "Ingrese sus notas personales relacionadas con el libro" ) %> 
+			
 		</div>
 
 		<% if @book.new_record? %>
