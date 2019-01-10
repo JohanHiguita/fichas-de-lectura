@@ -41,7 +41,7 @@
 		<div class="form-group autors">
 			<label><b>Autor*:</b></label>
 			<%= render "autor_collections" %>
-			<%= link_to "Ingresar nuevo Autor", new_autor_path, remote: true, class: "btn btn-sm btn-outline-success btn-crear-autor"  %>
+			<%= link_to "Crear Autor", new_autor_path, remote: true, class: "btn btn-sm btn-outline-success btn-crear-autor"  %>
 		</div>
 
 		<div class="form-group topic_checkboxes">
@@ -61,7 +61,15 @@
 			
 
 			<% end %>
-			<%= link_to "Crear Tema", new_topic_path, remote: true, class: "btn btn-sm btn-outline-success btn-crear-autor"  %>
+
+			<%= link_to "Crear Tema", new_topic_path, remote: true, class: "btn btn-sm btn-outline-success btn-crear-topic"  %>
+		</div>
+
+		<div class="form-group">
+			<label><b>Notas personales:</b></label>
+			<%= text_area(:book, :notes, cols: 20, rows: 10, class: "form-control", placeholder: "Ingrese sus notas personales relacionadas con el libro" ) %> 
+			
+
 		</div>
 
 		<% if @book.new_record? %>
