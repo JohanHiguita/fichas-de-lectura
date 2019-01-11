@@ -1,0 +1,40 @@
+<div class="modal fade" id="topic-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Crear tema</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<%  #@topic=Topic.new %>
+			<%= form_for @topic, remote: true do |f| %>
+			<div class="modal-body">
+				
+				<% if @topic.errors.any? %>
+				<div class="alert alert-danger alert-block alert-fized">
+					<ul>
+						<% @topic.errors.full_messages.each do |msg| %>
+						<li><%= msg %></li>
+						<% end %>
+					</ul>
+
+				</div>
+				<% end %>
+				<div class="form-row">
+
+					<div class="col">
+						<%= f.text_field :name, class: "form-control", placeholder: "Nuevo tema"  %>
+					</div>
+				</div>
+
+			</div>
+
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+				<%= f.submit "Agregar", class: "btn btn-success"%>
+			</div>
+			<% end %>
+		</div>
+	</div>
+</div>
