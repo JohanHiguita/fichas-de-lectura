@@ -29,6 +29,6 @@ class AutorsController < ApplicationController
 
 
 	def autor_params
-  		params.require(:autor).permit(:name1, :name2, :lastname1,:lastname2) #solo permite estos datos
+  		params.require(:topic).permit(:name1, :name2, :lastname1,:lastname2) #solo permite estos datos
 	end
 end

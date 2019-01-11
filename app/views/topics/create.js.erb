@@ -1,0 +1,12 @@
+<% if @topic.errors.empty? %>
+$("#topic-modal").modal("hide");
+
+$( '<%= j render "books/topic_checkbox", topic: @topic %>' ).insertBefore( ".btn-crear-topic" );
+
+<% else %>
+alert(" <%= @topic.errors.full_messages[0] %>");
+<% end %>
+
+/*------------------------Functions:---------------------*/
+
+//function to set the selected value as default
