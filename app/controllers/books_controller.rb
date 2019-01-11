@@ -81,6 +81,7 @@ class BooksController < ApplicationController
 
   def book_params
   params.require(:book).permit(:user_id, :title, :city,:editorial, :notes, :autor_id, :topic_ids) #solo permite estos datos
+
   end
 
   def insert_cite
@@ -89,6 +90,7 @@ class BooksController < ApplicationController
       @cite = Cite.create(content: cite)
       @book.cites << @cite
     end
+
   end
 
 end
