@@ -7,7 +7,9 @@
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
-			<%  @topic=Topic.new %>
+
+			<%  #@topic=Topic.new %>
+
 			<%= form_for @topic, remote: true do |f| %>
 			<div class="modal-body">
 				
