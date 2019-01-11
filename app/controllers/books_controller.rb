@@ -35,7 +35,7 @@ class BooksController < ApplicationController
     if @book.save
 
       flash[:notice]= "Libro creado exitosamente!"
-      redirect_to books_path
+      redirect_to book_path(@book)
 
     else
       @topics=Topic.all
@@ -62,7 +62,7 @@ class BooksController < ApplicationController
     if @book.update(book_params)
 
       flash[:notice]= "Libro editado exitosamente!"
-      redirect_to books_path
+      redirect_to book_path(@book)
 
     else
       flash[:alert] = "Falló la modificación del libro"

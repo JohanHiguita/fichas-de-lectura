@@ -1,6 +1,6 @@
 <div class="container">
-	<h1><%= @book.title%></h1>
-	<h3><b>Autor:</b> <%= @autor %></h3>
+	<h1><%= @book.title.upcase%></h1>
+	<h4>Autor: <%= @autor %></h4>
 	<p><b>Ciudad:</b> <%= @book.city %></p>
 	<p><b>Editorial:</b> <%= @book.editorial %></p>
 	<p><b>Temas:</b>
@@ -11,12 +11,12 @@
 	<h3>Citas textuales</h3>
 	<ul>
 		<% @cites.each do |cite| %>
-		<li><%= cite.content %></li>
+		<li><em><q><%= cite.content %></q>	</em></li>
 		<% end %>
 	</ul>
 	<h3>Notas personales</h3>
-	<p><%= @book.notes %></p>
-	
+	<p class="personal-notes"><%= markdown(@book.notes) %></p>
+	 
 
 
 
