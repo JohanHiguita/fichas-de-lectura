@@ -1,2 +1,17 @@
-<%= check_box_tag "topic_ids[#{topic.id}]", topic.id %>
-<%= label_tag("topic_ids[#{topic.id}]", topic.name) %> <br>
+
+<% if @book.new_record?%>
+<div class="col-12 col-xs-6 col-sm-3">
+	<%= check_box_tag "topic_ids[#{topic.id}]", topic.id %>
+	<%= label_tag("topic_ids[#{topic.id}]", topic.name.capitalize) %>		
+</div>
+<% else %>
+<div class="col-12 col-xs-6 col-sm-3">
+	<!-- checked checkbox en el form de editar: -->
+	<% if index_topics.include?(topic.id) %>
+	<%= check_box_tag "topic_ids[#{topic.id}]", topic.id, true %> 
+	<% else %>
+	<%= check_box_tag "topic_ids[#{topic.id}]", topic.id %>
+	<% end %>
+	<%= label_tag("topic_ids[#{topic.id}]", topic.name) %> <br>
+</div>
+<% end %>

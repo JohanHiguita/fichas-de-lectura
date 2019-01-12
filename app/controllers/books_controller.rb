@@ -33,13 +33,12 @@ class BooksController < ApplicationController
       end
     end
     if @book.save
-
-      flash[:notice]= "Libro creado exitosamente!"
+      flash[:notice]= "¡Se ha creado el libro #{@book.title} exitosamente!"
       redirect_to book_path(@book)
 
     else
       @topics=Topic.all
-      flash[:alert] = "Falló la cración del libro"
+      flash[:alert] = "Error al crear el libro"
       render :new
     end
   end
@@ -61,7 +60,7 @@ class BooksController < ApplicationController
     end
     if @book.update(book_params)
 
-      flash[:notice]= "Libro editado exitosamente!"
+      flash[:notice]= "¡Se ha editado el libro '#{@book.title.upcase}' exitosamente!"
       redirect_to book_path(@book)
 
     else
@@ -73,6 +72,7 @@ class BooksController < ApplicationController
   def destroy
     book = Book.find(params[:id])
     book.destroy
+    flash[:notice]="El libro fue eliminado exitosamente"
     redirect_to books_path
   end
 

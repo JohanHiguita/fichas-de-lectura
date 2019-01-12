@@ -1,96 +1,99 @@
 <% index_topics = @book.topics.map{|x| x.id} %>
- <% unless @book.new_record? 
+<% unless @book.new_record? 
 		@book.topics.delete_all #Reinicia asocioaciones (solo en editar)
-	end %>
-	<br><br>
-	<div class="container">
-		<% if @book.new_record? %>
-		<h2>Crear nuevo libro</h2>
-		<% else %>
-		<h2>Editar libro</h2>
-		<% end %>
+		end %>
+		<br><br>
+		<div class="container">
+			<% if @book.new_record? %>
+			<h2>Crear nuevo libro</h2>
+			<% else %>
+			<h2>Editar libro</h2>
+			<% end %>
 
-		<%= form_for @book do |f| %>
-		<% if @book.errors.any? %>
-		<div class="alert alert-danger alert-block alert-fized">
-			<ul>
-				<% @book.errors.full_messages.each do |msg| %>
-				<li><%= msg %></li>
+			<%= form_for @book do |f| %>
+			<% if @book.errors.any? %>
+			<div class="alert alert-danger alert-block alert-fized">
+				<ul>
+					<% @book.errors.full_messages.each do |msg| %>
+					<li><%= msg %></li>
+					<% end %>
+				</ul>
+
+			</div>
+			<% end %>
+
+			<div class="form-row">
+				<div class="col-12 col-md-6">
+					<div class="form-group">
+						<label for="title"><b>*Título:</b></label>
+						<%= f.text_field :title, class: "form-control", placeholder: "Ingrese título del libro"  %>
+					</div>
+				</div>
+				<div class="col-12 col-md-6">
+					<div class="form-group autors">
+						<label><b>*Autor:</b></label>
+						<%= render "autor_collections" %>
+					</div>
+				</div>
+
+			</div>
+
+			<div class="form-row">
+				<div class="col-12 col-md-6">
+					<div class="form-group">
+						<label for=""><b>Editorial</b></label>
+						<%= f.text_field :editorial, class: "form-control", placeholder: "Ingrese Editorial"  %>
+					</div>
+				</div>
+				<div class="col-12 col-md-6 ">
+					<div class="form-group">
+						<label for=""><b>Ciudad:</b></label>
+						<%= f.text_field :city, class: "form-control", placeholder: "Ingrese ciudad"  %>
+					</div>
+				</div>
+			</div>
+
+
+	
+			<div class="form-group topic_checkboxes">
+				<label for=""><b>Temas</b></label><br>
+				<div class="row">
+				<% for topic in @topics %>
+				<%= render "topic_checkbox", topic: topic, index_topics: index_topics %> 
 				<% end %>
-			</ul>
+				</div> 
 
-		</div>
-		<% end %>
+				<%= link_to "Crear Tema", new_topic_path, remote: true, class: "btn btn-sm btn-outline-success btn-crear-topic"  %>
+			</div>
+
+			<div class="form-group">
+				<label><b>Notas personales:</b></label><br>
+				<small class="text-muted"><i class="fab fa-markdown"></i>&nbsp;Soporta Markdown</small>
 
 
-		<div class="form-group">
-			<label for=""><b>Título*:</b></label>
-			<%= f.text_field :title, class: "form-control", placeholder: "Ingrese título del libro"  %>
-		</div>
+				<%= text_area(:book, :notes, cols: 20, rows: 10, class: "form-control", placeholder: "Ingrese sus notas personales relacionadas con el libro" ) %> 	
+			</div>
 
-		<div class="form-group">
-			<label for=""><b>Editorial</b></label>
-			<%= f.text_field :editorial, class: "form-control", placeholder: "Ingrese Editorial"  %>
-		</div>
+			<div class="form-group">
+				<label for=""><b>Agregar cita textual:</b></label>
+				<%= f.text_field :cites, class: "form-control", value: "", placeholder: "Ingrese cita, sin comillas"  %>
 
-		<div class="form-group">
-			<label for=""><b>Ciudad:</b></label>
-			<%= f.text_field :city, class: "form-control", placeholder: "Ingrese ciudad"  %>
-		</div>
+			</div>
 
-		<div class="form-group autors">
-			<label><b>Autor*:</b></label>
-			<%= render "autor_collections" %>
-			<%= link_to "Crear Autor", new_autor_path, remote: true, class: "btn btn-sm btn-outline-success btn-crear-autor"  %>
-		</div>
-
-		<div class="form-group topic_checkboxes">
-			<label for=""><b>Temas</b></label><br>
-			<% for topic in @topics %> 
-			<% if @book.new_record?%>
-			<%= render "topic_checkbox", topic: topic %>
+			<% if @book.new_record? %>
+			<%= f.submit "Crear Libro", class: "btn btn-success"%>
 			<% else %>
-			<!-- checked checkbox en el form de editar: -->
-			<% if index_topics.include?(topic.id) %>
-			<%= check_box_tag "topic_ids[#{topic.id}]", topic.id, true %> 
-			<% else %>
-			<%= check_box_tag "topic_ids[#{topic.id}]", topic.id %>
-			<% end %>
-			<%= label_tag("topic_ids[#{topic.id}]", topic.name) %> <br>
-			<% end %>
-			
-
+			<%= f.submit "Editar", class: "btn btn-success"%>
 			<% end %>
 
-			<%= link_to "Crear Tema", new_topic_path, remote: true, class: "btn btn-sm btn-outline-success btn-crear-topic"  %>
+
+
+			<%= link_to "Volver", books_path, class: "btn btn-secondary"%>
+
+			<!-- <label>Temas</label> -->
+			<%#= f.collection_select(:topic_ids, @topics, :id, :name, {prompt:"Choose a Category"}, {class: "form-control"})  %>
+
+
+
+			<% end %>
 		</div>
-
-		<div class="form-group">
-			<label><b>Notas personales:</b></label>
-
-			<%= text_area(:book, :notes, cols: 20, rows: 10, class: "form-control", placeholder: "Ingrese sus notas personales relacionadas con el libro" ) %> 	
-		</div>
-
-		<div class="form-group">
-			<label for=""><b>Citas textuales:</b></label>
-			<%= f.text_field :cites, class: "form-control", value: "", placeholder: "Ingrese cita, sin comillas"  %>
-
-		</div>
-
-		<% if @book.new_record? %>
-		<%= f.submit "Crear Libro", class: "btn btn-primary"%>
-		<% else %>
-		<%= f.submit "Editar", class: "btn btn-primary"%>
-		<% end %>
-
-
-
-		<%= link_to "Volver", books_path, class: "btn btn-secondary"%>
-
-		<!-- <label>Temas</label> -->
-		<%#= f.collection_select(:topic_ids, @topics, :id, :name, {prompt:"Choose a Category"}, {class: "form-control"})  %>
-
-
-
-		<% end %>
-	</div>

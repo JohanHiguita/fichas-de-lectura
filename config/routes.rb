@@ -6,5 +6,6 @@ Rails.application.routes.draw do
 	resources :books 
 	resources :autors
 	resources :topics
+	resources :cites
 
 end

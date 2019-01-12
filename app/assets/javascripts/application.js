@@ -47,7 +47,11 @@ $(document).ready(function () {
 	});
 	addClassesInput();
 
-	
+	//Alertas:
+	$(".alert").fadeIn(500).css("opacity", "0.85").delay(4000).slideUp(1000);
+    $(".alerts").on('click','.alert', function(){$(this.remove())});
+
+	//translateTable();
 
 //Funciones:
 function translateTable() {
