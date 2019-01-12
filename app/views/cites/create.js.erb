@@ -1,0 +1,12 @@
+<% if @cite.errors.empty? %>
+	$("#cite-modal").modal("hide");
+	// $(".cites-list").append(<%= @cite.content %>);
+	//var content = <%= @cite.content %>;
+	$(".cites-list").append('<%= j render "cites/new_cite" %>')
+
+<% else %>
+	alert(" <%= @cite.errors.full_messages[0] %>");
+<% end %>
+
+/*------------------------Functions:---------------------*/
+

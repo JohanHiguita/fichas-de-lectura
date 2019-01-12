@@ -14,13 +14,13 @@
 	</p>
 	<p>
 		<h3>Citas textuales</h3>
-		<ul>
+		<ul class="cites-list">
 			<% @cites.each do |cite| %>
 			<li><em><q><%= cite.content %></q>	</em></li>
 			<% end %>
 		</ul>
-		<%= link_to new_book_path, class: "btn btn-sm btn-outline-success", title: "Agregar cita" do %>
-		<span data-feather='plus' ></span>Ingresar cita 
+		<%= link_to new_cite_path(@book.id), remote: true, class: "btn btn-sm btn-outline-success", title: "Agregar cita" do %>
+		<span data-feather='plus' ></span>Agregar cita 
 		<% end %>
 	</p>
 	

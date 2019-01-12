@@ -11,7 +11,7 @@
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css">
 	<!-- Fontawesome: -->
-	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 	<!-- Tipo de letra brand -->
 	<link href="https://fonts.googleapis.com/css?family=Dancing+Script" rel="stylesheet">
@@ -19,19 +19,21 @@
 </head>
 
 <body>
+	<% if user_signed_in? %>
 	<div id="page-container">
-		<% if user_signed_in? %>
+		
 		<%= render "layouts/navbar" %>
-		<% end %>
+		
 		<div id="content-wrap">
 			<%= yield %>
 		</div>
 		<br/><br/>
-		<% if user_signed_in? %>
-		<%= render "layouts/footer" %>
-		<% end %>
+		
+		<%= render "layouts/footer" %>	
 	</div>
-	
+	<% else %>
+	<%= yield %>
+	<% end %>
 
 	
 	<!-- Feather icons: -->

@@ -1,0 +1,43 @@
+<div class="modal fade" id="cite-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Crear cita textual</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<% #@autor=Autor.new %>
+			<%= form_for @cite, remote: true do |f| %>
+			<div class="modal-body">
+
+				
+				<% if @cite.errors.any? %>
+				<div class="alert alert-danger alert-block alert-fized">
+					<ul>
+						<% @cite.errors.full_messages.each do |msg| %>
+						<li><%= msg %></li>
+						<% end %>
+					</ul>
+
+				</div>
+				<% end %>
+				<div class="col">
+						<%= f.text_field :book_id, value: @book_id, type: "hidden", class: "form-control", placeholder: "Ingrese cita, sin comillas" %>
+					</div>
+				<div class="form-row">
+					<div class="col">
+						<%= f.text_field :content, class: "form-control", placeholder: "Ingrese cita, sin comillas" %>
+					</div>
+				</div>
+		
+			</div>
+
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+				<%= f.submit "Agregar", class: "btn btn-success"%>
+			</div>
+			<% end %>
+		</div>
+	</div>
+</div>
