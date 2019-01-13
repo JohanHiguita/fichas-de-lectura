@@ -61,17 +61,19 @@ es:
   activerecord:
     attributes:
       user:
+        email: "email"
         name: "El nombre"
         password: "La contraseña"
-      post:
+      book:
         title: "El Título"
         content: "El contenido"
+        autor: "El autor"
     errors:
       models:
-        post:
+        book:
           attributes:
-            content:
-              too_short: "debe tener mínimo 250 caractéres"
+            autor:
+              required: "no puede estar vacío"
         user:
           attributes:
             email:

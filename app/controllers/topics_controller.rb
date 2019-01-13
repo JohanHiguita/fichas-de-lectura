@@ -6,12 +6,8 @@ class TopicsController < ApplicationController
 
 	def create
 
-		@topic = Topic.new(topic_params)
-		if @topic.save
+		@topic = Topic.create(topic_params)
 
-		else
-     
-  		end
 
 	end
 

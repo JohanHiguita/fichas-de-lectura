@@ -1,7 +1,7 @@
 <% if @autor.errors.empty? %>
 $("#autor-modal").modal("hide");
-$(".select-autors").val(<%= @autor.id %>);
-$(".select-autors").replaceWith('<%= j render "books/autor_collections" %>');
+//$(".select-autors").val(<%= @autor.id %>); //
+$(".select-autors").replaceWith('<%= j render "books/autor_collections" %>'); //refresh collection
 
 setInput(<%= @autor.id %>); //set the new autor by default
 

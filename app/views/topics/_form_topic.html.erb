@@ -23,10 +23,11 @@
 
 				</div>
 				<% end %>
+				<% #byebug %>
 				<div class="form-row">
 
 					<div class="col">
-						<%= f.text_field :name, class: "form-control", placeholder: "Nuevo tema"  %>
+						<%= f.text_field :name, class: "form-control", placeholder: "Nuevo tema", autofocus: true%>
 					</div>
 				</div>
 
@@ -40,3 +41,4 @@
 		</div>
 	</div>
 </div>
+

@@ -1,5 +1,5 @@
 <div class="ui-widget">
 
 	<%= collection_select(:book, :autor_id, Autor.all.order(lastname1: :asc), :id, :name_with_initial, {prompt: true}, {:class=>'custom-select select-autors', :id=>'combobox'}) %>
-	<%= link_to "Crear Autor", new_autor_path, remote: true, class: "btn btn-sm btn-outline-success btn-crear-autor"  %>
+	
 </div>

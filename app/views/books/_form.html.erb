@@ -26,13 +26,14 @@
 				<div class="col-12 col-md-6">
 					<div class="form-group">
 						<label for="title"><b>*Título:</b></label>
-						<%= f.text_field :title, class: "form-control", placeholder: "Ingrese título del libro"  %>
+						<%= f.text_field :title, class: "form-control", placeholder: "Ingrese título del libro", autofocus: true  %>
 					</div>
 				</div>
 				<div class="col-12 col-md-6">
 					<div class="form-group autors">
 						<label><b>*Autor:</b></label>
 						<%= render "autor_collections" %>
+						<%= link_to "Crear Autor", new_autor_path, remote: true, class: "btn btn-sm btn-outline-success btn-crear-autor"  %>
 					</div>
 				</div>
 
@@ -54,13 +55,18 @@
 			</div>
 
 
-	
+
 			<div class="form-group topic_checkboxes">
 				<label for=""><b>Temas</b></label><br>
-				<div class="row">
-				<% for topic in @topics %>
-				<%= render "topic_checkbox", topic: topic, index_topics: index_topics %> 
-				<% end %>
+				<div class="row row-topics">
+					<% for topic in @topics %>
+						<% if @book.new_record? %>
+							<%= render "topic_checkbox_newbook", topic: topic%>
+						<% else %>
+							<%= render "topic_checkbox_editbook", topic: topic, index_topics: index_topics %>
+						<% end %>
+
+					<% end %>
 				</div> 
 
 				<%= link_to "Crear Tema", new_topic_path, remote: true, class: "btn btn-sm btn-outline-success btn-crear-topic"  %>
