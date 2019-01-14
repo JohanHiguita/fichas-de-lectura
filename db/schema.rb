@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2019_01_05_235104) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "autors", force: :cascade do |t|
     t.string "name1"
     t.string "name2"
@@ -27,23 +30,23 @@ ActiveRecord::Schema.define(version: 2019_01_05_235104) do
     t.string "city"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "autor_id"
-    t.integer "user_id"
+    t.bigint "autor_id"
+    t.bigint "user_id"
     t.text "notes"
     t.index ["autor_id"], name: "index_books_on_autor_id"
     t.index ["user_id"], name: "index_books_on_user_id"
   end
 
   create_table "books_topics", id: false, force: :cascade do |t|
-    t.integer "topic_id"
-    t.integer "book_id"
+    t.bigint "topic_id"
+    t.bigint "book_id"
     t.index ["book_id"], name: "index_books_topics_on_book_id"
     t.index ["topic_id"], name: "index_books_topics_on_topic_id"
   end
 
   create_table "cites", force: :cascade do |t|
     t.text "content"
-    t.integer "book_id"
+    t.bigint "book_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["book_id"], name: "index_cites_on_book_id"
@@ -67,4 +70,9 @@ ActiveRecord::Schema.define(version: 2019_01_05_235104) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "books", "autors"
+  add_foreign_key "books", "users"
+  add_foreign_key "books_topics", "books"
+  add_foreign_key "books_topics", "topics"
+  add_foreign_key "cites", "books"
 end

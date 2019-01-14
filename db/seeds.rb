@@ -15,7 +15,7 @@ num_cites=300
 
 #Topics:
 num_topics.times do |i|
-	Topic.create(id: i+1, name: Faker::Book.unique.genre)
+	Topic.create!(name: Faker::Book.unique.genre)
 end
 
 
@@ -23,7 +23,6 @@ end
 #Autors:
 num_authors.times do |i|
 	Autor.create!(
-		id: i+1,
 		 name1: Faker::Name.first_name,
 		 name2: Faker::Name.middle_name,
 		 lastname1: Faker::Name.last_name,
@@ -34,18 +33,20 @@ end
 
 #Books:
 prng = Random.new
+prng1 = Random.new
+prng2 = Random.new
+prng3 = Random.new
 num_books.times do |i|
 	Book.create!(
-		id: i+1, 
 		title: Faker::Book.unique.title, 
 		editorial: Faker::Book.publisher,
 		city: Faker::Nation.capital_city,
 		autor_id: prng.rand(1..num_authors),
 		notes: Faker::Lorem.paragraph(50,true),
 		topic_ids: [
-			prng.rand(1..num_topics),
-			prng.rand(1..num_topics),
-			prng.rand(1..num_topics)
+			prng1.rand(1..num_topics),
+			prng2.rand(1..num_topics),
+			prng3.rand(1..num_topics)
 		],
 		user_id: 1 
 		);
@@ -57,9 +58,9 @@ prng2 = Random.new
 num_cites.times do |i|
 	
 	if i.odd?
-		Cite.create!(id: i+1, content: Faker::Simpsons.quote, book_id: prng2.rand(1..num_books)  )
+		Cite.create!(content: Faker::Simpsons.quote, book_id: prng2.rand(1..num_books)  )
 	else
-		Cite.create!(id: i+1, content: Faker::Friends.quote, book_id: prng2.rand(1..num_books)  )
+		Cite.create!(content: Faker::Friends.quote, book_id: prng2.rand(1..num_books)  )
 	end
 	
 end
