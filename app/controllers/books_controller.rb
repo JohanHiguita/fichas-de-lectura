@@ -18,7 +18,14 @@ class BooksController < ApplicationController
     @book=Book.new
     @cite =Cite.new
     @topics=Topic.all
-    #@autor=Autor.new
+    #@topics=Topic.where(user_id: current_user.id)
+  
+end
+
+  def edit
+    @book=Book.find(params[:id])
+    @topics=Topic.all
+    #@topics=Topic.where(user_id: current_user.id)
 
   end
 
@@ -45,12 +52,7 @@ class BooksController < ApplicationController
     end
   end
 
-  def edit
-    @book=Book.find(params[:id])
-    @topics=Topic.all
-
-  end
-
+  
   def update
     @book=Book.find(params[:id])
     insert_cite
