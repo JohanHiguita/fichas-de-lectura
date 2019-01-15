@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :books, dependent: :destroy
+  has_many :autors, dependent: :destroy
+  has_many :topics, dependent: :destroy
   after_create :send_mails
 
   def send_mails

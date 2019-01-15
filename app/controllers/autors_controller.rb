@@ -1,22 +1,28 @@
 class AutorsController < ApplicationController
 
+
+	before_action :authenticate_user!
+
 	def new
 		@autor = Autor.new
 	end
 
 	def create
 
-		@autor = Autor.create(autor_params)
-		# if @autor.save
+
+		@autor = Autor.new(autor_params)
+		
+		@autor.user = current_user
+		if @autor.save
 
 		# 	flash[:notice]= "Autor creado exitosamente!"
 		# 	#redirect_to books_path
 
-		# else
+		else
 		# 	@topics=Topic.all
 		# 	flash[:alert] = "Falló la cración del Autor"
 		# 	#render :new
-		# end
+		end
 	end
 
 	def edit
@@ -29,6 +35,6 @@ class AutorsController < ApplicationController
 
 
 	def autor_params
-  		params.require(:autor).permit(:name1, :name2, :lastname1,:lastname2) #solo permite estos datos
+  		params.require(:autor).permit(:user_id, :name1, :name2, :lastname1,:lastname2) #solo permite estos datos
 	end
 end

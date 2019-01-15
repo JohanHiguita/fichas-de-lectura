@@ -18,14 +18,14 @@ class BooksController < ApplicationController
     @book=Book.new
     @cite =Cite.new
     @topics=Topic.all
-    #@topics=Topic.where(user_id: current_user.id)
+    @topics=Topic.where(user_id: current_user.id)
   
-end
+  end
 
   def edit
     @book=Book.find(params[:id])
-    @topics=Topic.all
-    #@topics=Topic.where(user_id: current_user.id)
+    #@topics=Topic.all
+    @topics=Topic.where(user_id: current_user.id)
 
   end
 
@@ -60,7 +60,7 @@ end
     if params[:topic_ids]
       
       new_ids = params[:topic_ids].values #se obtienen solo los valores 
-      new_ids = current_and_new_ids.map(&:to_i) #a enteros
+      new_ids = new_ids.map(&:to_i) #a enteros
       #se actualizan los nuevos temas
       new_ids.each do |topic_id| 
         topic = Topic.find(topic_id)

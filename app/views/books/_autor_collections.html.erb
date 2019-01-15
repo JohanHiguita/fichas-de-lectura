@@ -1,5 +1,5 @@
 <div class="ui-widget">
-
-	<%= collection_select(:book, :autor_id, Autor.order(lastname1: :asc), :id, :name_with_initial, {prompt: true}, {:class=>'custom-select select-autors', :id=>'combobox'}) %>
+	
+	<%= collection_select(:book, :autor_id, Autor.where(user_id: current_user.id).order(lastname1: :asc), :id, :name_with_initial, {prompt: true}, {:class=>'custom-select select-autors', :id=>'combobox'}) %>
 	
 </div>
