@@ -10,7 +10,6 @@ class UserNotifierMailer < ApplicationMailer
 	def new_user_notification(user)
 		@user = user
 		@subject = "Fichas lectura: Alguien ha creado un usuario"
-		mail(to: "higuitajohan@gmail.com", subject: @subject)
-		
+		mail(to: "higuitajohan@gmail.com", subject: @subject)	
 	end
 end

@@ -1,7 +1,8 @@
 <% index_topics = @book.topics.map{|x| x.id} %>
-<% unless @book.new_record? 
-		@book.topics.delete_all #Reinicia asocioaciones (solo en editar)
-		end %>
+
+<% # unless @book.new_record? 
+		#@book.topics.delete_all #Reinicia asocioaciones (solo en editar)
+		#end %>
 		<br><br>
 		<div class="container">
 			<% if @book.new_record? %>
@@ -60,11 +61,11 @@
 				<label for=""><b>Temas</b></label><br>
 				<div class="row row-topics">
 					<% for topic in @topics %>
-						<% if @book.new_record? %>
-							<%= render "topic_checkbox_newbook", topic: topic%>
-						<% else %>
-							<%= render "topic_checkbox_editbook", topic: topic, index_topics: index_topics %>
-						<% end %>
+					<% if @book.new_record? %>
+					<%= render "topic_checkbox_newbook", topic: topic%>
+					<% else %>
+					<%= render "topic_checkbox_editbook", topic: topic, index_topics: index_topics %>
+					<% end %>
 
 					<% end %>
 				</div> 
@@ -89,7 +90,7 @@
 			<% if @book.new_record? %>
 			<%= f.submit "Crear Libro", class: "btn btn-success"%>
 			<% else %>
-			<%= f.submit "Editar", class: "btn btn-success"%>
+			<%= f.submit "Guardar", class: "btn btn-success"%>
 			<% end %>
 
 

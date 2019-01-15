@@ -24,10 +24,12 @@ class BooksController < ApplicationController
 
   def create
     @book = Book.new(book_params)
+
     insert_cite
     @book.user = current_user
     if params[:topic_ids]
       params[:topic_ids].each do |topic_id|
+
         topic = Topic.find(topic_id)
         @book.topics << topic
       end
@@ -52,8 +54,13 @@ class BooksController < ApplicationController
   def update
     @book=Book.find(params[:id])
     insert_cite
+    @book.topics.clear #limpiar asociaciones para actualizar
     if params[:topic_ids]
-      params[:topic_ids].each do |topic_id|
+      
+      new_ids = params[:topic_ids].values #se obtienen solo los valores 
+      new_ids = current_and_new_ids.map(&:to_i) #a enteros
+      #se actualizan los nuevos temas
+      new_ids.each do |topic_id| 
         topic = Topic.find(topic_id)
         @book.topics << topic
       end
